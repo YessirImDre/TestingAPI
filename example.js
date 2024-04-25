@@ -1,8 +1,23 @@
-// Lines of code required for console input and output
-const readline = require('readline');
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
+// Load backend file with prerequisites
+var backend = require("./backend.js");
+
+backend.run();
+var con = backend.manageConnection;
+var userIO = backend.inputOutput;
+
+/* NOTE: Code below the line will be removed or modified in a later update
+-----------------------------------------------------------------------------*/
+
+/*
+con.connect(function(err) {
+  if (err) throw err;
+  userIO.question("Enter the name of a country: ", (cName) => {
+    con.query("SELECT * FROM countryinfo WHERE name='" + cName + "'", function (err, result, fields) {
+      if (err) throw err;
+      console.log(result);
+    });
+    userIO.close();
+  });
 });
 
 // Ask user to input the name of a country, then request the relevant data from the API
@@ -19,3 +34,4 @@ function fetchCountry(url)
   .then(data => console.log(data))
   .catch(err => console.log("Error:", err));
 }
+*/
