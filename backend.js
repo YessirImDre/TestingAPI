@@ -1,8 +1,8 @@
 var run = function run(){
-    // Line of code required for node.js access to MySQL server
+  // Code required for node.js access to MySQL server
   var mysql = require('mysql');
 
-  // Lines of code required for console input and output
+  // Code required for allowing console input and output
   const readline = require('readline');
   const IO = readline.createInterface({
     input: process.stdin,
@@ -11,6 +11,8 @@ var run = function run(){
 
   module.exports.inputOutput = IO;
 
+  // Code required to create a connection to the MySQL server;
+  // connection to the server will eventually be port-forwarded, these values currently do nothing
   var con = mysql.createConnection({
     host: "localhost",
     user: "sqluser",
@@ -18,17 +20,20 @@ var run = function run(){
     database: "countrytable"
   });
 
+  // Try connection to MySQL server, throw error if unsuccessful
   con.connect(function(err) {
     if (err) throw err;
     console.log("Successfully connected to the database!");
 
+    // Reset country info table on load
     con.query("DELETE FROM countryinfo", function (err, result, fields) {
       if (err) throw err;
       console.log(result);
     });
   });
 
-  fetch(/*"https://restcountries.com/v3.1/all?fields=name,capital,region,population"*/ "https://restcountries.com/v3.1/all")
+  // Request data for all countries from API
+  fetch("https://restcountries.com/v3.1/all")
     .then(res => res.json())
     .then(data => {
       var listLength = Object.keys(data).length;
@@ -40,6 +45,8 @@ var run = function run(){
     })
     .catch(err => console.log("Error:", err));
 
+    // Load name, capital, region, and population for each country into country info table in database,
+    // throw error if unsuccessful
     function loadData({name, capital, region, population}){
       var countryName = name.common;
       var countryCapital = capital;
@@ -51,10 +58,11 @@ var run = function run(){
         console.log(result);
       });
     
-      console.log(countryName, countryCapital, countryRegion, countryPopulation);
+      console.log("Successful logging of country: " + countryName + "with data: ", countryCapital, countryRegion, countryPopulation);
     };
 
   module.exports.manageConnection = con;
 };
 
+// Export backend.js as a module for the main.js file
 module.exports.run = run;
