@@ -19,9 +19,23 @@
     </main>
   </body>
 
-  <form id="userRequest">
+  <form id="userRequest" onsubmit="return userRequest()">
     <label for="request">Enter the name of a country:</label><br>
     <input type="text" id="request" name="request"><br><br>
-    <input type="button" onclick="userRequest()" value="Submit">
+    <button type="submit">Submit</button>
   </form>
+
+  <div id="table">
+    <table id="country">
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Capital</td>
+          <td>Region</td>
+          <td>Population</td>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
 </html>
