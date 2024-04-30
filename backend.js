@@ -16,19 +16,19 @@ var run = function run(){
   var con = mysql.createConnection({
     host: "localhost",
     user: "sqluser",
-    password: "password",
+    password: "M1pQV6HwL6XIaGgT",
     database: "countrytable"
   });
+
+  module.exports.manageConnection = con;
 
   // Try connection to MySQL server, throw error if unsuccessful
   con.connect(function(err) {
     if (err) throw err;
-    console.log("Successfully connected to the database!");
 
     // Reset country info table on load
     con.query("DELETE FROM countryinfo", function (err, result, fields) {
       if (err) throw err;
-      console.log(result);
     });
   });
 
@@ -55,13 +55,8 @@ var run = function run(){
       
       con.query('INSERT INTO countryinfo VALUES ("' + countryName + '", "' + countryCapital + '", "' + countryRegion + '", "' + countryPopulation + '")', function (err, result, fields) {
         if (err) throw err;
-        console.log(result);
       });
-    
-      console.log("Successful logging of country: " + countryName + "with data: ", countryCapital, countryRegion, countryPopulation);
     };
-
-  module.exports.manageConnection = con;
 };
 
 // Export backend.js as a module for the main.js file
