@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
+  <script type="text/javascript" src="backend.js"></script>
+  <script type="text/javascript" src="main.js"></script>
+
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +12,16 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
   </head>
+
   <body>
     <main>
         <h1>TestTestTest</h1>  
     </main>
-	<script src="backend.js"></script>
-  <script src="main.js"></script>
   </body>
+
+  <form id="userRequest">
+    <label for="request">Enter the name of a country:</label><br>
+    <input type="text" id="request" name="request"><br><br>
+    <input type="button" onclick="userRequest()" value="Submit">
+  </form>
 </html>
