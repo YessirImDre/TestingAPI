@@ -60,4 +60,5 @@ var run = function run(){
 };
 
 // Export backend.js as a module for the main.js file
-module.exports.run = run;
+const _run = run;
+export { _run as run };

@@ -1,9 +1,9 @@
 // Load backend file with prerequisites
-var backend = require("./backend.js");
+import { run, manageConnection, inputOutput } from "./backend.js";
 
-backend.run();
-var con = backend.manageConnection;
-var userIO = backend.inputOutput;
+run();
+var con = manageConnection;
+var userIO = inputOutput;
 
 function userRequest(){
 
