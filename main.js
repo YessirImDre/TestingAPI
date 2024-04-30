@@ -17,6 +17,22 @@ function userRequest(){
     else{
       con.query("SELECT * FROM countryinfo WHERE name='" + cName + "'", function (err, result, fields) {
         if (err) throw err;
+
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Capital</th>
+            <th>Region</th>
+            <th>Population</th>
+          </tr>
+          <tr>
+            <th>result[0].name</th>
+            <th>result[0].capital</th>
+            <th>result[0].continent</th>
+            <th>result[0].population</th>
+          </tr>
+        </table>
+
         console.log("Name of country: " + result[0].name + '\n' +
           "Capital: " + result[0].capital + '\n' +
           "Continent: " + result[0].continent + '\n' +
@@ -25,4 +41,6 @@ function userRequest(){
       userIO.close();
     }
   });
+
+
 }
